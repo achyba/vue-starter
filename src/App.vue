@@ -1,16 +1,16 @@
 <template>
   <div class="my-app">
 
-    <div v-if="logged">{{email}} jesteś zalogowany
+    <div v-if="authentiatedUsername.length>0">Cześć {{authentiatedUsername}}! Jesteś zalogowana/y ;)
       <button @click="logOut()">Wyloguj</button>
     </div>
 
 
     <div v-else>
       <h1>Witaj w systemie do zapisów na zajęcia ^.^</h1>
-       Zaloguj się e-mailem
-    <input type="email" v-model="email">
-    <button @click="logIn()">Zaloguj</button>
+      <LoginForm @login="(username) => logMeIn(username)" buttonLabel="Zaloguj"></LoginForm>
+      <LoginForm @login="(username) => logMeIn(username)" buttonLabel="Zarejestruj"></LoginForm>
+      <LoginForm @login="(username) => logMeIn(username)" buttonLabel="Wyjdź"></LoginForm>
     </div>
 
   </div>
@@ -18,20 +18,23 @@
 
 <script>
 import "milligram";
+import LoginForm from "./LoginForm";
+
 export default {
+  components: {LoginForm},
   data() { //stan  komponentu - data go zwraca
     return {
-      email: '',
+      authentiatedUsername: '',
       password: '',
-      logged: false,
     };
   },
   methods: {
-    logIn() {
-      this.logged=true;
-    },
     logOut() {
-      this.logged=false;
+      this.authentiatedUsername = '';
+    },
+
+    logMeIn(username) {
+      this.authentiatedUsername = username;
     }
   }
 }
@@ -48,7 +51,7 @@ export default {
 }
 button{
   margin-left: 2px;
-  background-color: pink;
+  background-color: rebeccapurple;
   border: none;
 }
 
