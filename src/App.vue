@@ -7,17 +7,17 @@
 
 
     <div v-else>
-    Witaj w systemie do zapisów na zajęcia ^.^
-    Zaloguj się e-mailem
-
+      <h1>Witaj w systemie do zapisów na zajęcia ^.^</h1>
+       Zaloguj się e-mailem
     <input type="email" v-model="email">
     <button @click="logIn()">Zaloguj</button>
     </div>
+
   </div>
 </template>
 
 <script>
-
+import "milligram";
 export default {
   data() { //stan  komponentu - data go zwraca
     return {
